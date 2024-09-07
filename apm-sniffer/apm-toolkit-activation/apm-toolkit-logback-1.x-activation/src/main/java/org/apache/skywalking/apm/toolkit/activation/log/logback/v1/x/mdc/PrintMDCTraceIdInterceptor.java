@@ -23,6 +23,7 @@ import org.apache.skywalking.apm.agent.core.plugin.interceptor.enhance.EnhancedI
 import org.apache.skywalking.apm.agent.core.plugin.interceptor.enhance.InstanceMethodsAroundInterceptor;
 import org.apache.skywalking.apm.agent.core.plugin.interceptor.enhance.MethodInterceptResult;
 import org.apache.skywalking.apm.toolkit.logging.common.log.SkyWalkingContext;
+import org.slf4j.MDC;
 
 import java.lang.reflect.Method;
 
@@ -41,6 +42,11 @@ public class PrintMDCTraceIdInterceptor implements InstanceMethodsAroundIntercep
                 SkyWalkingContext skyWalkingContext = (SkyWalkingContext) ((EnhancedInstance) allArguments[0]).getSkyWalkingDynamicField();
                 if (skyWalkingContext != null) {
                     return "TID:" + skyWalkingContext.getTraceId();
+                } else {
+                    String tid = MDC.get("tid");
+                    if (tid != null) {
+                        return "TID:" + tid;
+                    }
                 }
             }
         }

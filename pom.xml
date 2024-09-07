@@ -32,10 +32,10 @@
     </parent>
 
     <modules>
-        <module>apm-commons</module>
-        <module>apm-protocol</module>
+        <!--<module>apm-commons</module>-->
+        <!--<module>apm-protocol</module>-->
         <module>apm-sniffer</module>
-        <module>apm-application-toolkit</module>
+        <!--<module>apm-application-toolkit</module>-->
     </modules>
     <packaging>pom</packaging>
 
